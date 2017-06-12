@@ -1,4 +1,5 @@
-from tweepy import OAuthHandler,Stream
+import jason
+from tweepy import OAuthHandler,Stream,API
 from tweepy.streaming import StreaemListener
 
 Consumer_Key = '8cHXrID1ZvQ6utL8lh8kWHOYJ'
@@ -11,13 +12,13 @@ auth.set_access_token(Access_Token,Access_Token_Secret)
 
 Class PrintListener(StreamListerner):
       def on_status(self,status):
-          if not status.text[:3] == 'RT': 
+            if not status.text[:3] == 'RT': 
                   print(status.text)
                   print(status.author,screen_name,status.created_at,status.cource,'\n')
-          
+  
       def on_error(self,status_code):
-                print("Error Code: {}".format(status_code))
-                return True #Keep Stream alive
+            print("Error Code: {}".format(status_code))
+            return True #Keep Stream alive
       def on_timeout(self):
                   print("Listener timed out")
                   return True #Keep Steam alive
@@ -29,7 +30,16 @@ def print_to_terminal():
                 languages = (en',
                 stream.sample(languages=languages
                 
+                              
+                              
+def pull_down_tweets(screen_name):    
+                              api = API(auth)
+                              tweets = api.user_timeline(screen_name = screen_name,count = 200) 
+                              for tweet in tweets:
+                                    print(jason.dumps(tweet._json,ident = 3))
+                              
                 
 if __name__ =='__main__':
-         print_to_terminal()
+         #print_to_terminal()
+         pull_down_tweets(auth.username)
   
