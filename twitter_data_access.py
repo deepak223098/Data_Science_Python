@@ -1,3 +1,7 @@
+#apps.twiiter.com/app
+#dev.twitter.com/overview/api
+#dev.twiiter.com/rest/tools/console
+
 import jason
 from tweepy import OAuthHandler,Stream,API
 from tweepy.streaming import StreaemListener
@@ -27,11 +31,10 @@ Class PrintListener(StreamListerner):
 def print_to_terminal():
                 listener = PrintListener()
                 stream = Stream(auth,listener)
-                languages = (en',
-                stream.sample(languages=languages
+                languages = (en',)
+                stream.sample(languages=languages)
                 
-                              
-                              
+                                    
 def pull_down_tweets(screen_name):    
                               api = API(auth)
                               tweets = api.user_timeline(screen_name = screen_name,count = 200) 
