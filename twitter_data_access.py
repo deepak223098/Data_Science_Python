@@ -14,6 +14,20 @@ Access_Token_Secret = 'JFHpQdipiGqdarZbkDBWWgKRueINytB8g3THrhVlsiJUY'
 auth = OAuthHandler(Consumer_Key,Consumer_Secret)
 auth.set_access_token(Access_Token,Access_Token_Secret)
 
+def save_tweets():
+      directory = _get_dir_absolute_path()
+      filepath = path.join(directory,'tweets.jason')
+      listener = DatabaseListener(number_tweets_to_save = 1000,
+                                  filepath = filepath)
+      
+      stream - Stream9auth,listener)
+      languages = 'en'
+      try:
+            stream.sample(languages= languages)
+      except KeyboardInterrup:
+            listener.file.close()
+
+
 Class PrintListener(StreamListerner):
       def on_status(self,status):
             if not status.text[:3] == 'RT': 
